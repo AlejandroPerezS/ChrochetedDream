@@ -1,0 +1,41 @@
+.container{
+
+
+}
+.banner{
+  display: flex;
+  background-color: blue;
+  float: left;
+  width: 100%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+
+}
+.logo{
+  float: left;
+}
+
+.search{
+  float: right;
+  align-self: center;
+  width: 150px;
+  height: 50px;
+
+
+}
+.menu{
+  float: right;
+
+}
+
+.cart {
+  float: right;
+  content: url("/src/assets/shopping-cart.png");
+}
+.log-in{
+  float: right;
+  content: url("/src/assets/user-account.png");
+
+}
