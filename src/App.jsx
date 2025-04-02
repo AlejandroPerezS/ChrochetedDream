@@ -19,7 +19,7 @@ function App() {
 
     }
 
-    let div = <>
+    return <>
         <div className="page">
 
             <div className="nav-bar">
@@ -69,7 +69,6 @@ function App() {
             </div>
         </div>
     </>;
-    return div;
 }
 
 export default App;
