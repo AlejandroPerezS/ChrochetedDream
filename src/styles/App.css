@@ -10,27 +10,29 @@ colors
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
+
 }
 
 /* Page layout with three columns:
    Left: nav-bar, Center: content-container, Right: menu-container */
 .page {
   display: grid;
-  grid-template-columns: 10vw 1fr 10vw; /* adjust widths as needed */
+  grid-template-columns: 20vw 1fr 20vw; /* adjust widths as needed */
   height: 100vh; /* full viewport height */
 }
 
 .nav-bar {
   background-color: #F2F6D0;
   box-sizing: border-box;
+  border: 1fr;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto; /* forces the middle row to shrink */
   position: sticky;
   top: 0;
   height: 100vh;
   padding: 10px;
-  overflow: hidden; /* prevents the overall nav-bar from expanding */
+
 }
 
 /* Ensure each section inside nav-bar is centered */
@@ -39,7 +41,9 @@ html, body {
   align-items: center;
   justify-content: center;
 }
-
+.nav-bar > p{
+  font-size: 2rem;
+}
 
 /* Content container in the center */
 .content-container {
@@ -58,8 +62,15 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: none; /* remove background */
+  background-color: #F2F6D0;
+  border: 1fr;
+
 }
+.menu > h2 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
 
 /* Individual element styling */
 .logo img {
@@ -74,14 +85,9 @@ html, body {
   max-height: 250px;
 }
 
-.search {
-  width: 150px;
-  height: 50px;
-  border-radius: 15%;
-  border: 1px solid blue;
-}
 .content{
-  font-size: 32px;
+  font-size: 1rem;
+
 }
 
 /* Content container */
