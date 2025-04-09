@@ -1,120 +1,114 @@
-/*
-colors
-#71697A
-#E4BE9E
-#D9D2B6
-#D0E1D4
-#F2F6D0
- */
+/* Define CSS variables for consistent theming */
+:root {
+  --primary-color: #71697A;
+  --accent-color: #E4BE9E;
+  --bg-light: #F2F6D0;
+  --bg-secondary: #D0E1D4;
+  --bg-highlight: #D9D2B6;
+}
+
 /* Reset default margins and paddings */
 html, body {
   margin: 0;
   padding: 0;
-
-
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Page layout with three columns:
    Left: nav-bar, Center: content-container, Right: menu-container */
 .page {
   display: grid;
-  grid-template-columns: 20vw 1fr 20vw; /* adjust widths as needed */
-  height: 100vh; /* full viewport height */
+  grid-template-columns: 20vw 1fr 20vw;
+  height: 100vh;
 }
 
+/* Nav-bar styles */
+/* Nav-bar styles enhanced for a fuller look */
 .nav-bar {
-  background-color: #F2F6D0;
+  background: var(--bg-light);
   box-sizing: border-box;
-  border: 1fr;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto; /* forces the middle row to shrink */
+  padding: 20px;
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 10px;
-
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 20px;
 }
 
-/* Ensure each section inside nav-bar is centered */
-.nav-bar > div {
+.nav-bar > div,
+.nav-bar > nav,
+.nav-bar > .tagline {
   display: grid;
   align-items: center;
   justify-content: center;
 }
-.nav-bar > p{
-  font-size: 2rem;
+
+/* Navigation links with hover effects */
+.nav-bar nav a {
+  text-decoration: none;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
 }
 
-/* Content container in the center */
-.content-container {
-  background-color: #ffffff;
-  padding: 5px;
-  box-sizing: border-box;
-  display: grid;
-  flex-direction: column;
-  gap: 10px;
+.nav-bar nav a:hover {
+  background-color: var(--accent-color);
+  color: white;
 }
 
-/* Menu container on the right side */
-.menu-container {
+/* Tagline style */
+.tagline {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-style: italic;
   padding: 10px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: #F2F6D0;
-  border: 1fr;
-
-}
-.menu > h2 {
-  text-align: center;
-  font-size: 1.5rem;
 }
 
-
-/* Individual element styling */
-.logo img {
-  max-width: 80%;
-  height: auto;
-}
-
+/* About us section */
 .about-us {
-  list-style: none;
   padding: 0;
   margin: 0;
   max-height: 250px;
-}
-
-.content{
+  text-align: center;
   font-size: 1rem;
-
 }
 
-/* Content container */
+/* Content container styling */
 .content-container {
+  background-color: #ffffff;
   padding: 20px;
-
+  box-sizing: border-box;
+  display: grid;
+  gap: 10px;
 }
 
 /* Featured items grid */
 .featured-items-grid {
   display: grid;
-  grid-template-columns:fit-content(100%);
-  grid-template-rows:fit-content(100%);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-
 }
 
-/* Individual product card */
+/* Modern product card styling */
 .product-card {
-  border: 1px solid #ddd;
+  border: none;
+  border-radius: 8px;
   padding: 10px;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .product-card img {
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 
 .product-card h5 {
@@ -125,6 +119,59 @@ html, body {
 .product-card .price {
   font-size: 1em;
   font-weight: bold;
-  color: #333;
+  color: var(--primary-color);
 }
+
+/* Menu container styling */
+.menu-container {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-secondary) 100%);
+}
+
+.menu {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.menu h2 {
+  font-size: 1.5rem;
+}
+
+/* Styling for dynamic form fields */
+.c_order {
+  margin-top: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.date_order {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .nav-bar, .content-container, .menu-container {
+    height: auto;
+  }
+  .nav-bar {
+    position: relative;
+  }
+}
+
+.logo img {
+
+
+}
+
+
+
 
