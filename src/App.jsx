@@ -6,10 +6,30 @@ function App() {
     // State to capture the selected menu option and the order date
     const [selectedOption, setSelectedOption] = useState("");
     const [orderDate, setOrderDate] = useState("");
+    const [email,setEmail] = useState("");
+    const [error, setError] = useState("");
 
     // Handler for select changes
     const handleSelectChange = (e) => {
         setSelectedOption(e.target.value);
+    };
+    // set the error messages as flash messages
+    // handle email input
+    const handleEmailChange = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+
+        if (validateEmail(newEmail)) {
+            setError('');
+        } else {
+            setError('Email is not valid!');
+        }
+    };
+
+    // email validation
+    const validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     };
 
     // Conditionally render form fields based on the selected option
@@ -42,9 +62,42 @@ function App() {
             }
 
             case "order_item":
-                return <p>You selected: Make order that is on the site.</p>;
+                // Compute the minimum date: today's date plus 7 days.
+                const today = new Date();
+                today.setDate(today.getDate() + 7);
+                // Convert the date to a string in YYYY-MM-DD format.
+                const minDate = today.toISOString().split("T")[0];
+
+                return (
+                    <>
+                        <label className="date_order" htmlFor="order_date">
+                            Please choose a date for your Order
+                        </label>
+                        <br />
+                        <input
+                            className="date_order"
+                            type="date"
+                            id="order_date"
+                            value={orderDate}
+                            onChange={(e) => setOrderDate(e.target.value)}
+                            min={minDate}
+                        />
+                        {orderDate && <p>You have selected: {orderDate}</p>}
+                    </>
+                );
             case "req_info":
-                return <p>You selected: Request more information.</p>;
+                return (
+                    <>
+                        <input
+                            type="email"
+                            placeholder="samplemail@gmail.com"
+                            value={email}
+                            onChange={handleEmailChange}
+
+                            />
+                        {error && <p>{error}</p>}
+                    </>
+                );
             case "review":
                 return <p>You selected: Leave a review.</p>;
             default:
@@ -64,6 +117,7 @@ function App() {
                         Hello, we are the Crocheted Dream! team and we would like to show you some of our products.
                         We encourage you to contact us and don’t be afraid — nothing is too difficult for us.
                     </p>
+
                 </div>
                 {/* Added tagline for extra content */}
                 <div className="tagline">
@@ -81,6 +135,36 @@ function App() {
                         <p className="price">$XX.XX</p>
                     </div>
                     {/* Add more product cards as needed */}
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
+                    <div className="product-card">
+                        <img src={siteLogo} alt="Item Name" />
+                        <h5>Item Name</h5>
+                        <p className="price">$XX.XX</p>
+                    </div>
 
                 </div>
             </div>
