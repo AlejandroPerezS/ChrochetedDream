@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import siteLogo from './assets/logo.png';
+import {validateEmail} from './functions/emails.jsx'
 import './styles/App.css';
 
 function App() {
@@ -19,18 +20,17 @@ function App() {
         const newEmail = e.target.value;
         setEmail(newEmail);
 
-        if (validateEmail(newEmail)) {
+        if (validateEmail()) {
             setError('');
+
         } else {
             setError('Email is not valid!');
+
         }
     };
 
-    // email validation
-    const validateEmail = (email) => {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    };
+
+
 
     // Conditionally render form fields based on the selected option
     const renderFormFields = () => {
@@ -56,8 +56,10 @@ function App() {
                             onChange={(e) => setOrderDate(e.target.value)}
                             min={minDate}
                         />
-                        {orderDate && <p>You have selected: {orderDate}</p>}
-                    </>
+                        <br/>
+                        <input type="submit" value="Submit" />
+                        </>
+
                 );
             }
 
@@ -82,7 +84,8 @@ function App() {
                             onChange={(e) => setOrderDate(e.target.value)}
                             min={minDate}
                         />
-                        {orderDate && <p>You have selected: {orderDate}</p>}
+                        <br/>
+                        <input type="submit" value="Submit" />
                     </>
                 );
             case "req_info":
@@ -93,13 +96,22 @@ function App() {
                             placeholder="samplemail@gmail.com"
                             value={email}
                             onChange={handleEmailChange}
-
                             />
-                        {error && <p>{error}</p>}
+                        <br/>
+                        <input type="submit" value="Submit" />
+
                     </>
                 );
             case "review":
-                return <p>You selected: Leave a review.</p>;
+                return (
+                    <>
+
+
+
+                        <br/>
+                        <input type="submit" value="Submit" />
+                    </>
+                );
             default:
                 return null;
         }
